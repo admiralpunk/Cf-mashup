@@ -1,0 +1,17 @@
+{
+  "name": "codeforces-mashup-generator",
+  "version": "1.0.0",
+  "description": "mashup generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "atharva dingare",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.7"
+  }
+}
