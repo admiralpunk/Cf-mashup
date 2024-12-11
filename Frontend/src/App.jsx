@@ -66,18 +66,28 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Codeforces Helper</h1>
+    <div className="landing-container">
+      <h1 className="header">Codeforces Helper</h1>
+
       {selection === "" && (
-        <div>
-          <button onClick={() => setSelection("problemset")}>
+        <div className="button-container">
+          <button
+            className="action-button"
+            onClick={() => setSelection("problemset")}
+          >
             Generate Problemset
           </button>
-          <button onClick={() => setSelection("contest")}>Get a Contest</button>
+          <button
+            className="action-button"
+            onClick={() => setSelection("contest")}
+          >
+            Get a Contest
+          </button>
         </div>
       )}
+
       {selection === "problemset" && (
-        <div className="problemset-container">
+        <div className="form-container">
           <ProblemsetForm
             customProblemsetData={customProblemsetData}
             setCustomProblemsetData={setCustomProblemsetData}
@@ -85,8 +95,9 @@ const App = () => {
           />
         </div>
       )}
+
       {selection === "contest" && (
-        <div className="contest-container">
+        <div className="form-container">
           <ContestForm
             contestData={contestData}
             setContestData={setContestData}
@@ -94,6 +105,7 @@ const App = () => {
           />
         </div>
       )}
+
       {selection !== "" && (
         <button className="go-back-btn" onClick={() => setSelection("")}>
           Go Back

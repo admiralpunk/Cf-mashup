@@ -184,3 +184,90 @@ button.toggle-edit-btn {
 button.toggle-edit-btn:hover {
   background-color: #2980b9;
 }
+
+
+/* Disable scrolling */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure the body and html take the full height */
+  width: 100%;  /* Full width */
+  overflow-x: hidden; /* Disable scrolling */
+}
+
+/* Full-screen layout for the landing container */
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure it takes up the entire screen height */
+  width: 100%; /* Ensure it takes up the entire screen width */
+  background-image: url('https://wallpapers.com/images/high/simple-clean-teal-forest-art-qnb5nm8h3my54zkl.webp');
+  background-size: cover;
+  background-position: center center; /* Position the background image at the top */
+  background-attachment: fixed; /* Keep the background fixed when scrolling is disabled */
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 0; /* Remove padding */
+}
+
+/* Styling for the header */
+.header {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+/* Button container styling */
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Button styles */
+.action-button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #2980b9;
+}
+
+/* Form container (if content exceeds the viewport height) */
+.form-container {
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  background-color: #ffffffcc; /* Semi-transparent white */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  max-height: 80vh; /* Limit form height */
+  overflow-y: auto; /* Make form scrollable if content overflows */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Go back button */
+.go-back-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.go-back-btn:hover {
+  background-color: #c0392b;
+}

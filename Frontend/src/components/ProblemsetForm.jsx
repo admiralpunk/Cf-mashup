@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ProblemsetForm.css"; // Import the CSS file
 
 const ProblemsetForm = ({
   customProblemsetData,
@@ -7,7 +8,6 @@ const ProblemsetForm = ({
 }) => {
   const [problemsetLinks, setProblemsetLinks] = useState([]);
 
-  // Destructure with default values to ensure tags are always arrays
   const {
     ratings,
     usernames,
@@ -16,7 +16,6 @@ const ProblemsetForm = ({
   } = customProblemsetData;
 
   const generateProblemsetData = () => {
-    // Convert ratings array to the required format
     const requirements = {};
     ratings.forEach((entry) => {
       if (entry.rating && entry.frequency) {
@@ -24,7 +23,6 @@ const ProblemsetForm = ({
       }
     });
 
-    // Construct the data to be sent
     const requestData = {
       users: usernames,
       requirements,
@@ -32,14 +30,9 @@ const ProblemsetForm = ({
       unwantedTags,
     };
 
-    // Simulate the API call to generate the problemset
-    // Here, you'll replace this with your actual `handleGenerateProblemset` function
     handleGenerateProblemset(requestData).then((response) => {
-      // Assume the response is an array of problemset links
-      // response = response.json();
-      // console.log(response.problemset);
       const links = response || [];
-      setProblemsetLinks(links); // Update state with fetched links
+      setProblemsetLinks(links);
     });
   };
 
@@ -75,62 +68,40 @@ const ProblemsetForm = ({
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Generate Custom Problemset</h2>
-
-      {/* Labels for Rating and Frequency */}
-      <div style={{ display: "flex", marginBottom: "5px" }}>
-        <div style={{ marginRight: "10px", flex: 1 }}>
-          <label>Rating:</label>
-        </div>
-        <div style={{ marginRight: "10px", flex: 1 }}>
-          <label>Frequency:</label>
-        </div>
-      </div>
+    <div className="container">
+      <h2 className="heading">Generate Custom Problemset</h2>
 
       {/* Rating Inputs */}
-      <div
-        style={{ maxHeight: "300px", overflowY: "auto", marginBottom: "20px" }}
-      >
+      <div className="section">
+        <h3>Ratings & Frequency</h3>
         {ratings.map((entry, index) => (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "10px",
-            }}
-          >
-            <div style={{ marginRight: "10px", flex: 1 }}>
-              <input
-                type="number"
-                value={entry.rating}
-                onChange={(e) => {
-                  const updatedRatings = [...ratings];
-                  updatedRatings[index].rating = e.target.value;
-                  setCustomProblemsetData({
-                    ...customProblemsetData,
-                    ratings: updatedRatings,
-                  });
-                }}
-                style={{ width: "100%" }}
-              />
-            </div>
-            <div style={{ marginRight: "10px", flex: 1 }}>
-              <input
-                type="text"
-                value={entry.frequency}
-                onChange={(e) => {
-                  const updatedRatings = [...ratings];
-                  updatedRatings[index].frequency = e.target.value;
-                  setCustomProblemsetData({
-                    ...customProblemsetData,
-                    ratings: updatedRatings,
-                  });
-                }}
-                style={{ width: "100%" }}
-              />
-            </div>
+          <div key={index} className="inputGroup">
+            <input
+              type="number"
+              value={entry.rating}
+              onChange={(e) => {
+                const updatedRatings = [...ratings];
+                updatedRatings[index].rating = e.target.value;
+                setCustomProblemsetData({
+                  ...customProblemsetData,
+                  ratings: updatedRatings,
+                });
+              }}
+              className="input"
+            />
+            <input
+              type="text"
+              value={entry.frequency}
+              onChange={(e) => {
+                const updatedRatings = [...ratings];
+                updatedRatings[index].frequency = e.target.value;
+                setCustomProblemsetData({
+                  ...customProblemsetData,
+                  ratings: updatedRatings,
+                });
+              }}
+              className="input"
+            />
             <button
               onClick={() => {
                 const updatedRatings = ratings.filter((_, i) => i !== index);
@@ -139,29 +110,30 @@ const ProblemsetForm = ({
                   ratings: updatedRatings,
                 });
               }}
+              className="removeButton"
             >
               Remove
             </button>
           </div>
         ))}
+        <button
+          onClick={() => {
+            setCustomProblemsetData({
+              ...customProblemsetData,
+              ratings: [...ratings, { rating: "", frequency: "" }],
+            });
+          }}
+          className="addButton"
+        >
+          + Add Rating
+        </button>
       </div>
 
-      <button
-        onClick={() => {
-          setCustomProblemsetData({
-            ...customProblemsetData,
-            ratings: [...ratings, { rating: "", frequency: "" }],
-          });
-        }}
-      >
-        + Add Rating
-      </button>
-
       {/* Usernames Section */}
-      <h3>Codeforces Usernames</h3>
-      <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+      <div className="section">
+        <h3>Codeforces Usernames</h3>
         {usernames.map((username, index) => (
-          <div key={index} style={{ marginBottom: "10px" }}>
+          <div key={index} className="inputGroup">
             <input
               type="text"
               value={username}
@@ -173,6 +145,7 @@ const ProblemsetForm = ({
                   usernames: updatedUsernames,
                 });
               }}
+              className="input"
             />
             <button
               onClick={() => {
@@ -184,76 +157,93 @@ const ProblemsetForm = ({
                   usernames: updatedUsernames,
                 });
               }}
+              className="removeButton"
             >
               Remove
             </button>
           </div>
         ))}
+        <button
+          onClick={() => {
+            setCustomProblemsetData({
+              ...customProblemsetData,
+              usernames: [...usernames, ""],
+            });
+          }}
+          className="addButton"
+        >
+          + Add Username
+        </button>
       </div>
 
-      <button
-        onClick={() => {
-          setCustomProblemsetData({
-            ...customProblemsetData,
-            usernames: [...usernames, ""],
-          });
-        }}
-      >
-        + Add Username
-      </button>
-
       {/* Wanted Tags Section */}
-      <h3>Wanted Tags</h3>
-      <div>
+      <div className="section">
+        <h3>Wanted Tags</h3>
         {Array.isArray(wantedTags) &&
           wantedTags.map((tag, index) => (
-            <div key={index} style={{ marginBottom: "10px" }}>
+            <div key={index} className="inputGroup">
               <input
                 type="text"
                 value={tag}
                 onChange={(e) =>
                   handleUpdateTag("wantedTags", index, e.target.value)
                 }
+                className="input"
               />
-              <button onClick={() => handleRemoveTag("wantedTags", index)}>
+              <button
+                onClick={() => handleRemoveTag("wantedTags", index)}
+                className="removeButton"
+              >
                 Remove
               </button>
             </div>
           ))}
+        <button
+          onClick={() => handleAddTag("wantedTags")}
+          className="addButton"
+        >
+          + Add Wanted Tag
+        </button>
       </div>
-      <button onClick={() => handleAddTag("wantedTags")}>
-        + Add Wanted Tag
-      </button>
 
       {/* Unwanted Tags Section */}
-      <h3>Unwanted Tags</h3>
-      <div>
+      <div className="section">
+        <h3>Unwanted Tags</h3>
         {Array.isArray(unwantedTags) &&
           unwantedTags.map((tag, index) => (
-            <div key={index} style={{ marginBottom: "10px" }}>
+            <div key={index} className="inputGroup">
               <input
                 type="text"
                 value={tag}
                 onChange={(e) =>
                   handleUpdateTag("unwantedTags", index, e.target.value)
                 }
+                className="input"
               />
-              <button onClick={() => handleRemoveTag("unwantedTags", index)}>
+              <button
+                onClick={() => handleRemoveTag("unwantedTags", index)}
+                className="removeButton"
+              >
                 Remove
               </button>
             </div>
           ))}
+        <button
+          onClick={() => handleAddTag("unwantedTags")}
+          className="addButton"
+        >
+          + Add Unwanted Tag
+        </button>
       </div>
-      <button onClick={() => handleAddTag("unwantedTags")}>
-        + Add Unwanted Tag
-      </button>
 
-      {/* Fetch Problemset Button */}
-      <button onClick={generateProblemsetData}>Fetch Custom Problemset</button>
+      {/* Generate Problemset Button */}
+      <button onClick={generateProblemsetData} className="generateButton">
+        Fetch Custom Problemset
+      </button>
 
       {/* Display Problemset Links */}
       {problemsetLinks.length > 0 && (
-        <div>
+        <div className="linksContainer">
           <h3>Generated Problemset Links:</h3>
           <ul>
             {problemsetLinks.map((link, index) => (

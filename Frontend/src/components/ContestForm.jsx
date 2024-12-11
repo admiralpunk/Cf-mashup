@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ContestForm.css"; // Import the CSS file
 
 const ContestForm = ({ contestData, setContestData, handleGetContest }) => {
   // State to store the contest link after fetching
@@ -33,19 +34,12 @@ const ContestForm = ({ contestData, setContestData, handleGetContest }) => {
   };
 
   return (
-    <div>
-      <h2>Get a Contest</h2>
+    <div className="container">
+      <h2 className="heading">Get a Contest</h2>
       <label>
         Codeforces Usernames:
         {contestData.users.map((user, index) => (
-          <div
-            key={index}
-            style={{
-              marginBottom: "8px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+          <div key={index} className="inputGroup">
             <input
               type="text"
               value={user}
@@ -54,18 +48,12 @@ const ContestForm = ({ contestData, setContestData, handleGetContest }) => {
                 updatedUsernames[index] = e.target.value;
                 setContestData({ ...contestData, users: updatedUsernames });
               }}
+              className="inputField"
             />
             <button
               type="button"
               onClick={() => removeUser(index)}
-              style={{
-                marginLeft: "8px",
-                backgroundColor: "red",
-                color: "white",
-                border: "none",
-                padding: "4px 8px",
-                cursor: "pointer",
-              }}
+              className="removeButton"
             >
               Remove
             </button>
@@ -73,7 +61,9 @@ const ContestForm = ({ contestData, setContestData, handleGetContest }) => {
         ))}
       </label>
       <br />
-      <button onClick={addUser}>Add User</button>
+      <button onClick={addUser} className="addButton">
+        Add User
+      </button>
       <br />
       <label>
         Contest Type:
@@ -82,6 +72,7 @@ const ContestForm = ({ contestData, setContestData, handleGetContest }) => {
           onChange={(e) =>
             setContestData({ ...contestData, type: e.target.value })
           }
+          className="selectInput"
         >
           <option value="">-- Select Contest Type --</option>
           <option value="Div. 1">Div. 1</option>
@@ -92,11 +83,13 @@ const ContestForm = ({ contestData, setContestData, handleGetContest }) => {
         </select>
       </label>
       <br />
-      <button onClick={fetchContest}>Fetch Contest</button>
+      <button onClick={fetchContest} className="fetchButton">
+        Fetch Contest
+      </button>
 
       {/* Display the contest link if available */}
       {contestLink && (
-        <div>
+        <div className="linkContainer">
           <h3>Contest Link:</h3>
           <a href={contestLink} target="_blank" rel="noopener noreferrer">
             {contestLink}
