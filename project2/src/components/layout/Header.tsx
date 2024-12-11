@@ -7,8 +7,8 @@ export function Header() {
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Create Mashup", href: "/mashup" },
-    { label: "Get Contests", href: "/contest" },
+    { label: "Create Mashup", href: "/generate-mashup" },
+    { label: "Get Contests", href: "/create-contest" },
   ];
 
   return (
