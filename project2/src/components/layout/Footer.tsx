@@ -50,13 +50,17 @@ export function Footer() {
             </h3>
             <div className="mt-4 flex space-x-6">
               <a
-                href="#"
+                href="https://github.com/admiralpunk" // GitHub URL
+                target="_blank" // Open link in a new tab
+                rel="noopener noreferrer" // Improves security
                 className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
               >
                 <Github className="h-6 w-6" />
               </a>
               <a
-                href="#"
+                href="https://x.com/aniketkolte27" // X (formerly Twitter) URL
+                target="_blank" // Open link in a new tab
+                rel="noopener noreferrer" // Improves security
                 className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
               >
                 <Twitter className="h-6 w-6" />
