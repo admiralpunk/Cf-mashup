@@ -1,7 +1,7 @@
 import React from "react";
 import { Code, Menu, X } from "lucide-react";
 import { ThemeToggle } from "../ui/ThemeToggle";
-
+import { Link } from "react-router-dom";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -24,13 +24,15 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                {item.label}
-              </a>
+              
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  {item.label}
+                </Link>
+              
             ))}
             <ThemeToggle />
           </nav>
