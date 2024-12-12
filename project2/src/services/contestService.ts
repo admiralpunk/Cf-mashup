@@ -2,7 +2,7 @@ import axios from "axios";
 import { ContestFormatterInput, ContestResponse } from "../types/contest";
 import { formatContestRequest } from "../utils/contestFormatters";
 
-const API_BASE_URL = "http://localhost:6500/api/v1";
+const API_BASE_URL = "https://keepitsafe-9ijq.onrender.com/api/v1";
 
 export const generateContest = async (
   formData: ContestFormatterInput

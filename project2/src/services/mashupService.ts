@@ -1,7 +1,7 @@
 import { MashupFormData } from '../types/mashup';
 import { ProblemsetResponse } from '../types/problemset';
 
-const API_BASE_URL = 'http://localhost:6500/api/v1';
+const API_BASE_URL = "https://keepitsafe-9ijq.onrender.com/api/v1";
 
 export const generateMashup = async (formData: MashupFormData): Promise<ProblemsetResponse> => {
   const response = await fetch(`${API_BASE_URL}/codeforces/generate`, {
